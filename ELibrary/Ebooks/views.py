@@ -4,4 +4,5 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Hello, world. You're in virtual world of learning skills.")
-# Create your views here.
+def about(request):
+    return HttpResponse("It is online library where you can find any type of book you want")
