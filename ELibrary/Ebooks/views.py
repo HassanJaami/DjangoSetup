@@ -1,9 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import View
 from django.http import HttpResponseRedirect
 from .models import Book
-from .book_form import BookForm
+from .book_form import BookForm, BookName
 
+
+class MyView(View):
+    def get(self, request):
+        # <view logic>
+        return HttpResponse("result")
 
 
 def index(request):
@@ -45,3 +51,19 @@ def add_book(request):
         form = BookForm()
 
     return render(request, "Ebooks/book.html", {"form": form})
+
+
+def get_name(request):
+    if request.method == "POST":
+        # create a form instance and populate it with data from the request:
+        form = BookName(request.POST)
+
+        if form.is_valid():
+            return HttpResponse("Your Book Name is " + form.cleaned_data["Name"])
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = BookName()
+
+    return render(request, "Ebooks/BookName.html", {"form": form})
+

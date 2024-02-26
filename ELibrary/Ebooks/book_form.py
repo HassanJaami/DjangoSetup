@@ -6,3 +6,7 @@ class BookForm(forms.Form):
     book_type = forms.CharField(label="book_type", max_length=100)
     author = forms.CharField(label="author", max_length=100)
     pub_date = forms.CharField(label="pub_date", max_length=100)
+
+
+class BookName(forms.Form):
+    Name = forms.CharField(label="Name", max_length=100)
